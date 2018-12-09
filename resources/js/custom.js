@@ -1,13 +1,15 @@
-
-//https://api.github.com/search/users?q=a+repos&page=12
-//https://api.github.com/users/amatiasq/followers
-
 var API_URL = 'https://api.github.com/';
 var CREDENTIALS = '&access_token=31f983c9efa6670b2503be9f5168fa5d205546d4'; 
 
 $(document).ready(function() {
 
 	function getUserFollowers(id, selector) {
+
+		/**
+		Function that gets the followers from GITHUB
+		* @param {id} Id to identify the current row
+		* @param {selector} Current button selector 
+		**/
 
 		var currentList = $('#followers-'+id);
 		var followersUrl = $(currentList).attr('data-url');
@@ -21,11 +23,11 @@ $(document).ready(function() {
 
 			if (response.length > 0) {
 
-				$(currentList).attr('data-page', newPage);
-				
+				$(currentList).attr('data-page', newPage);				
 				followers.forEach(function(value, index){
 					$(currentList).append('<li class="list-inline-item"> <img src="' + value.avatar_url +'" width="40" height="40"></li>')
 				});
+			
 			} else {
 				$(selector).hide();
 			}
@@ -35,12 +37,15 @@ $(document).ready(function() {
 
 	function search() {
 
+		/**
+		Function that search users in GITHUB
+		**/
+
 		var quantity = 0;
 
 		var query = $('#search').val();
 
 		$.get(API_URL + 'search/users?q='+ query +'+repos', function(response) {
-			console.log(response);
 
 			var items = response.items;
 
