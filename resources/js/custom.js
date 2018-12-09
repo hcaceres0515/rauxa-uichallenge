@@ -1,5 +1,4 @@
 var API_URL = 'https://api.github.com/';
-var CREDENTIALS = '&access_token=31f983c9efa6670b2503be9f5168fa5d205546d4'; 
 
 $(document).ready(function() {
 
@@ -17,7 +16,7 @@ $(document).ready(function() {
 		var newPage = Number(page) + 1;
 		
 
-		$.get(followersUrl +'?page=' + newPage + CREDENTIALS, function(response) {
+		$.get(followersUrl +'?page=' + newPage, function(response) {
 
 			var followers = response;
 
@@ -25,7 +24,8 @@ $(document).ready(function() {
 
 				$(currentList).attr('data-page', newPage);				
 				followers.forEach(function(value, index){
-					$(currentList).append('<li class="list-inline-item"> <img src="' + value.avatar_url +'" width="40" height="40"></li>')
+					$(currentList).append('<li class="list-inline-item"> <img src="'+
+						value.avatar_url +'" width="40" height="40"></li>')
 				});
 			
 			} else {
@@ -61,7 +61,8 @@ $(document).ready(function() {
 
 				$(result).append('<tr><td scope="row">'+index+'</td><td><img src="'+
 					value.avatar_url+'" width="60" height="60"><span>'+
-					value.login+'</span></td><td data-position="'+index+'"><ul class="list-inline" data-page=0 data-url="'+value.followers_url+'" id="'+ followersId +'"></ul>'+
+					value.login+'</span></td><td data-position="'+index+'"><ul class="list-inline" data-page=0 data-url="'+
+					value.followers_url+'" id="'+ followersId +'"></ul>'+
 					'<button class="btn btn-primary btn-sm btnLoadMore"> + More </button></td>'+
 					'<td>'+value.score+'</td>'+	
 					'</tr>');
