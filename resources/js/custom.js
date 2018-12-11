@@ -45,7 +45,7 @@ $(document).ready(function() {
 
 		var query = $('#search').val();
 
-		$.get(API_URL + 'search/users?q='+ query +'+repos', function(response) {
+		$.get(API_URL + 'search/users?q='+ query, function(response) {
 
 			var items = response.items;
 
